@@ -7,17 +7,50 @@ public class Hammurabi {         // must save in a file named Hammurabi.java
     Random rand = new Random();  // this is an instance variable
     Scanner scanner = new Scanner(System.in);
 
+
     public static void main(String[] args) { // required in every Java program
         new Hammurabi().playGame();
     }
 
+    public int getPopulation() {
+        return population;
+    }
+
+    public void setPopulation(int population) {
+        this.population = population;
+    }
+
+    public int getBushels() {
+        return bushels;
+    }
+
+    public void setBushels(int bushels) {
+        this.bushels = bushels;
+    }
+
+    public int getAcres() {
+        return acres;
+    }
+
+    public void setAcres(int acres) {
+        this.acres = acres;
+    }
+
+    public int getLandValue() {
+        return landValue;
+    }
+
+    public void setLandValue(int landValue) {
+        this.landValue = landValue;
+    }
+
+    int population = 100;
+    int bushels = 2800;
+    int acres = 1000;
+    int landValue = 19;
+
+
     void playGame() {
-        int population = 100;
-        int bushels = 2800;
-        int acres = 1000;
-        int landValue = 19;
-
-
 
         System.out.println("O great Hammurabi!");
         System.out.println("You are in year one of your 10 year rule.");
@@ -30,6 +63,8 @@ public class Hammurabi {         // must save in a file named Hammurabi.java
         System.out.println("Land is currently worth 19 bushels per acre.");
         // declare local variables here: grain, population, etc.
         // statements go after the declations
+
+        askHowManyAcresToBuy(19, 2800);
     }
 
     int getNumber(String message) {
@@ -43,5 +78,40 @@ public class Hammurabi {         // must save in a file named Hammurabi.java
             }
         }
     }
+
+       public int askHowManyAcresToBuy(int price, int bushels){
+        int acresBought = scanner.nextInt();
+           getNumber("How many acres do you want to buy?");
+        if (price * scanner.nextInt() > bushels) {
+            System.out.println("You don't have enough coin to pay for that, try again...");
+        } else {
+            setBushels(bushels-(price * scanner.nextInt()));
+            acresBought = scanner.nextInt();
+
+        } return acresBought;
+    }
+
+    public int askHowManyAcresToSell(int acresOwned){
+        int acresSold = scanner.nextInt();
+        getNumber("How many acres do you want to sell?");
+        if (scanner.nextInt() > acresOwned || acresBought != 0;) {
+            System.out.println("You don't have enough land to sell, try again...");
+        } else {
+            acresSold = scanner.nextInt();
+
+        } return acresSold;
+    }
+
+    int howMuchGrainToFeedPeople(int bushels) {
+        int fedGrain;
+        getNumber("How much grain do you want to feed people?");
+            if ( scanner.nextInt() > bushels) {
+                System.out.println("You don't have enough grain!");
+            } else {
+                fedGrain = scanner.nextInt();
+            }
+    } return fedGrain;
+
+
     //other methods go here
 }
