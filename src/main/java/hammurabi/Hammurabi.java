@@ -68,8 +68,10 @@ public class Hammurabi {         // must save in a file named Hammurabi.java
         // declare local variables here: grain, population, etc.
         // statements go after the declations
 
-        askHowManyAcresToBuy(19, 100);
-        askHowManyAcresToSell(1000);
+        acresBought = askHowManyAcresToBuy(19, 100);
+        if (acresBought == 0) {
+            askHowManyAcresToSell(1000);
+        }
         howMuchGrainToFeedPeople(200);
         askHowManyAcresToPlant(10, 5, 5);
     }
@@ -86,50 +88,35 @@ public class Hammurabi {         // must save in a file named Hammurabi.java
     }
 
     int askHowManyAcresToBuy(int price, int bushels) {
-        getNumber("How many acres do you want to buy?");
-        int acresBought = scanner.nextInt();
-        System.out.println(acresBought);
-        if ((price * acresBought) > bushels) {
-            System.out.println("You don't have enough coin to pay for that, try again...");
-        } else {
-            bushels -= (price * acresBought);
-            System.out.println(bushels);
+        int acresBought = getNumber("How many acres do you want to buy? \n");
+        while ((price * acresBought) > bushels) {
+            acresBought = getNumber("You are broke, how many acres CAN you buy??? \n");
         }
+
         return acresBought;
     }
 
     public int askHowManyAcresToSell(int acresOwned) {
-        if (acresBought != 0) {
-            System.out.println("Nope");
-            System.exit(0);
-        }
-        getNumber("How many acres do you want to sell?");
-        int acresSold = scanner.nextInt();
-        if (acresSold > acresOwned) {
-            System.out.println("You can't do that, try again...");
-        } else {
-            bushels = acresSold * price;
+        int acresSold = getNumber("How many acres do you want to sell? \n");
+        while (acresSold > acresOwned) {
+            acresSold = getNumber("You don't have enough land to do that...try again...\n");
         }
         return acresSold;
     }
 
 
     int howMuchGrainToFeedPeople(int bushels) {
-        getNumber("How much grain do you want to feed people?");
-        int fedGrain = scanner.nextInt();
-        if (fedGrain > bushels) {
-            System.out.println("You don't have enough grain!");
-        } else {
-            bushels = bushels - fedGrain;
+        int fedGrain = getNumber("How much grain do you want to feed your people? \n");
+        while (fedGrain > bushels) {
+            fedGrain = getNumber("You don't have enough grain to feed the people, how much CAN you actually feed them? \n");
         }
         return fedGrain;
     }
 
     int askHowManyAcresToPlant(int acresOwned, int population, int bushels) {
-        getNumber("How many acres do you want to plant?");
-        int acresToPlant = scanner.nextInt();
-        if (acresToPlant > acresOwned || acresToPlant > bushels || population == 0) {
-            System.out.println("Nope");
+        int acresToPlant = getNumber("How many acres do you want to plant? \n");
+        while (acresToPlant > acresOwned || acresToPlant > (bushels / 2) || (population / 10) < acresToPlant) {
+            acresToPlant = getNumber("Nope, try again.... \n");
         }
         return acresToPlant;
     }
