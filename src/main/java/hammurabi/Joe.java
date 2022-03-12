@@ -17,6 +17,10 @@ public class Joe {
         return grainEaten;
     }
 
+    public int newCostOfLand{
+        return rand.nextInt(23, 17) + 17;
+    }
+
     public int newCostOfLand(){
 
     }
