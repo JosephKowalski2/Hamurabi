@@ -1,4 +1,5 @@
 package hammurabi;               // package declaration
+
 import java.util.InputMismatchException;
 import java.util.Random;         // imports go here
 import java.util.Scanner;
@@ -7,10 +8,12 @@ public class Hammurabi {         // must save in a file named Hammurabi.java
     Random rand = new Random();  // this is an instance variable
     Scanner scanner = new Scanner(System.in);
 
-
-    public static void main(String[] args) { // required in every Java program
-        new Hammurabi().playGame();
-    }
+    int population = 100;
+    int bushels = 2800;
+    int acres = 1000;
+    int price = 19;
+    int acresBought;
+    int acresSold;
 
     public int getPopulation() {
         return population;
@@ -37,20 +40,21 @@ public class Hammurabi {         // must save in a file named Hammurabi.java
     }
 
     public int getLandValue() {
-        return landValue;
+        return price;
     }
 
     public void setLandValue(int landValue) {
-        this.landValue = landValue;
+        this.price = landValue;
     }
 
-    int population = 100;
-    int bushels = 2800;
-    int acres = 1000;
-    int landValue = 19;
+
+    public static void main(String[] args) { // required in every Java program
+        new Hammurabi().playGame();
+    }
 
 
     void playGame() {
+
 
         System.out.println("O great Hammurabi!");
         System.out.println("You are in year one of your 10 year rule.");
@@ -64,7 +68,10 @@ public class Hammurabi {         // must save in a file named Hammurabi.java
         // declare local variables here: grain, population, etc.
         // statements go after the declations
 
-        askHowManyAcresToBuy(19, 2800);
+        askHowManyAcresToBuy(19, 100);
+        askHowManyAcresToSell(1000);
+        howMuchGrainToFeedPeople(200);
+        askHowManyAcresToPlant(10, 5, 5);
     }
 
     int getNumber(String message) {
@@ -72,46 +79,60 @@ public class Hammurabi {         // must save in a file named Hammurabi.java
             System.out.print(message);
             try {
                 return scanner.nextInt();
-            }
-            catch (InputMismatchException e) {
+            } catch (InputMismatchException e) {
                 System.out.println("\"" + scanner.next() + "\" isn't a number!");
             }
         }
     }
 
-       public int askHowManyAcresToBuy(int price, int bushels){
+    int askHowManyAcresToBuy(int price, int bushels) {
+        getNumber("How many acres do you want to buy?");
         int acresBought = scanner.nextInt();
-           getNumber("How many acres do you want to buy?");
-        if (price * scanner.nextInt() > bushels) {
+        System.out.println(acresBought);
+        if ((price * acresBought) > bushels) {
             System.out.println("You don't have enough coin to pay for that, try again...");
         } else {
-            setBushels(bushels-(price * scanner.nextInt()));
-            acresBought = scanner.nextInt();
-
-        } return acresBought;
+            bushels -= (price * acresBought);
+            System.out.println(bushels);
+        }
+        return acresBought;
     }
 
-    public int askHowManyAcresToSell(int acresOwned){
-        int acresSold = scanner.nextInt();
+    public int askHowManyAcresToSell(int acresOwned) {
+        if (acresBought != 0) {
+            System.out.println("Nope");
+            System.exit(0);
+        }
         getNumber("How many acres do you want to sell?");
-        if (scanner.nextInt() > acresOwned || acresBought != 0;) {
-            System.out.println("You don't have enough land to sell, try again...");
+        int acresSold = scanner.nextInt();
+        if (acresSold > acresOwned) {
+            System.out.println("You can't do that, try again...");
         } else {
-            acresSold = scanner.nextInt();
-
-        } return acresSold;
+            bushels = acresSold * price;
+        }
+        return acresSold;
     }
+
 
     int howMuchGrainToFeedPeople(int bushels) {
-        int fedGrain;
         getNumber("How much grain do you want to feed people?");
-            if ( scanner.nextInt() > bushels) {
-                System.out.println("You don't have enough grain!");
-            } else {
-                fedGrain = scanner.nextInt();
-            }
-    } return fedGrain;
+        int fedGrain = scanner.nextInt();
+        if (fedGrain > bushels) {
+            System.out.println("You don't have enough grain!");
+        } else {
+            bushels = bushels - fedGrain;
+        }
+        return fedGrain;
+    }
 
+    int askHowManyAcresToPlant(int acresOwned, int population, int bushels) {
+        getNumber("How many acres do you want to plant?");
+        int acresToPlant = scanner.nextInt();
+        if (acresToPlant > acresOwned || acresToPlant > bushels || population == 0) {
+            System.out.println("Nope");
+        }
+        return acresToPlant;
+    }
 
-    //other methods go here
 }
+//other methods go here
