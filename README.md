@@ -38,6 +38,8 @@ public class Hammurabi {         // must save in a file named Hammurabi.java
     }
 
     void playGame() {
+        int people = 100;
+        int grain = 2800
         // declare local variables here: grain, population, etc.
         // statements go after the declations
     }
