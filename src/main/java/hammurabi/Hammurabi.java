@@ -21,15 +21,16 @@ public class Hammurabi {         // must save in a file named Hammurabi.java
         int bushels = 2800;
         int acres = 1000;
         int price = 19;
-        int acresBought = 0;
-        int acresSold = 0;
-        int number_of_plague = 0;
-        int bushelsFedToPeople = 0;
+        int acresBought;
+        int acresSold;
+        int number_of_plague;
+        int bushelsFedToPeople;
         int harvest = 0;
         int deaths = 0;
         int immigrants = 0;
         int grainEaten = 0;
-        int acresPlanted = 0;
+        int acresPlanted;
+        int bushelsUsedAsSeed = 0;
         int totalDeaths = 0;
         int totalImmigration = 0;
         int totalGrainEatingByRats = 0;
@@ -40,7 +41,7 @@ public class Hammurabi {         // must save in a file named Hammurabi.java
             System.out.println("In the previous year," + " " + deaths + " " + "people starved to death.");
             System.out.println("In the previous year" + " " + immigrants + " " + "people entered the kingdom.");
             System.out.println("The population is now" + " " + population + " " + ".");
-            System.out.println("We harvested" + " " + harvest + " " + "bushels at 3 bushels per acre.");
+            System.out.println("We harvested" + " " + harvest + " " + "bushels.");
             System.out.println("Rats destroyed" + " " + grainEaten + " " + "bushels, leaving" + " " + bushels + " " + "bushels in storage.");
             System.out.println("The city owns" + " " + acres + " " + "acres of land.");
             System.out.println("Land is currently worth" + " " + price + " " + "bushels per acre.");
@@ -64,7 +65,7 @@ public class Hammurabi {         // must save in a file named Hammurabi.java
             if (uprising(population, deaths)) break;
             immigrants = immigrants(population, acres, bushels);
             population += immigrants;
-            harvest = harvest(acres, bushels);
+            harvest = harvest(acres, bushelsUsedAsSeed);
             bushels += harvest;
             grainEaten = grainEatenByRats(bushels);
             bushels -= grainEaten;
@@ -72,8 +73,11 @@ public class Hammurabi {         // must save in a file named Hammurabi.java
             totalDeaths = deaths + number_of_plague ;
             totalImmigration += immigrants;
             totalGrainEatingByRats += grainEaten;
+            years++;;
+            if(years==10) {
 
-            years++;
+                break;
+            }
 
         }
 
@@ -81,8 +85,8 @@ public class Hammurabi {         // must save in a file named Hammurabi.java
                     + "year(s)!\n A total of " + totalDeaths + " people died.\n " + totalImmigration +
                     " people have chosen to come to your amazing kingdom and the final population was "
                     + population + ".\n Somehow mutant rats ate a total of " + totalGrainEatingByRats +
-                    "... gross...\n Leaving " + bushels + " in storage.\n Finally you monopolized " + acres
-                    + " acres of land.");
+                    "bushels... gross...\n Leaving " + bushels + " in storage.\n Finally you monopolized "
+                    + acres + " acres of land.");
 
 
     }
@@ -140,6 +144,11 @@ public class Hammurabi {         // must save in a file named Hammurabi.java
         int number_of_plague = 0;
         if (rand.nextInt(100) > 85) {
             number_of_plague = Math.floorDiv(population, 2);
+            System.out.println("*********************************************************************************");
+            System.out.println("*********************************************************************************");
+            System.out.println("***********COVID HAS SWEPT THROUGH THE KINGDOM! " + number_of_plague + " people have died...***********");
+            System.out.println("*********************************************************************************");
+            System.out.println("*********************************************************************************");
         }
         return number_of_plague;
     }
@@ -167,14 +176,13 @@ public class Hammurabi {         // must save in a file named Hammurabi.java
     }
 
     public Integer immigrants(int population, int acresOwned, int grainInStorage) {
-        int immigrants = (((20 * acresOwned) + (grainInStorage)) / ((100 * population)) + 1);
         //Nobody will come to the city if people are starving (so don't call this method). If everyone
         // is well-fed, compute how many people come to the city as:
-        return immigrants;
+        return (((20 * acresOwned) + (grainInStorage)) / ((100 * population)) + 1);
     }
 
     public int harvest(int acres, int bushelsUsedAsSeed) {
-        int harvest = 0;
+        int harvest;
         int harvestPercent = rand.nextInt(1, 7) + 1;
         harvest = acres * harvestPercent - bushelsUsedAsSeed; //look at bushelsUsedAsSeed
         return harvest;
