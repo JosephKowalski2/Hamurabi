@@ -140,7 +140,10 @@ public class Hammurabi {         // must save in a file named Hammurabi.java
     public boolean uprising(int population, int howManyPeopleStarved) {
         //Return true if more than 45% of the people starve. (This will cause you to be immediately
         // thrown out of office, ending the game.)
-        return howManyPeopleStarved > (population * .45);
+        if(howManyPeopleStarved > (population * .45)){
+            System.out.println("You failed, and were ousted from office...");
+            return true;
+        }return false;
     }
 
     public Integer immigrants(int population, int acresOwned, int grainInStorage) {
