@@ -64,7 +64,7 @@
       <recent name="hammurabi" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.HammurabiTest">
+  <component name="RunManager" selected="Application.Hammurabi">
     <configuration name="Hammurabi" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="hammurabi.Hammurabi" />
       <module name="Hamurabi" />
@@ -97,6 +97,16 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="HammurabiTest.testGrainEatenByRats2" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="Hamurabi" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="HammurabiTest" />
+      <option name="METHOD_NAME" value="testGrainEatenByRats2" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="HammurabiTest.testHarvest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="Hamurabi" />
       <option name="PACKAGE_NAME" value="" />
@@ -107,23 +117,13 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="HammurabiTest.testNewCostOfLand" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="Hamurabi" />
-      <option name="PACKAGE_NAME" value="" />
-      <option name="MAIN_CLASS_NAME" value="HammurabiTest" />
-      <option name="METHOD_NAME" value="testNewCostOfLand" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.HammurabiTest" />
         <item itemvalue="Application.Hammurabi" />
-        <item itemvalue="JUnit.HammurabiTest.testHarvest" />
+        <item itemvalue="JUnit.HammurabiTest" />
+        <item itemvalue="JUnit.HammurabiTest.testGrainEatenByRats2" />
         <item itemvalue="JUnit.HammurabiTest.testGrainEatenByRats1" />
-        <item itemvalue="JUnit.HammurabiTest.testNewCostOfLand" />
+        <item itemvalue="JUnit.HammurabiTest.testHarvest" />
       </list>
     </recent_temporary>
   </component>
