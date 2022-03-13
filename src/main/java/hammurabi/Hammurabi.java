@@ -175,7 +175,7 @@ public class Hammurabi {         // must save in a file named Hammurabi.java
 
     public int harvest(int acres, int bushelsUsedAsSeed) {
         int harvest = 0;
-        int harvestPercent = rand.nextInt(1, 6) + 1;
+        int harvestPercent = rand.nextInt(1, 7) + 1;
         harvest = acres * harvestPercent - bushelsUsedAsSeed; //look at bushelsUsedAsSeed
         return harvest;
     }
@@ -183,13 +183,14 @@ public class Hammurabi {         // must save in a file named Hammurabi.java
     public int grainEatenByRats(int bushels) {
         int grainEaten = 0;
         if (rand.nextInt(100) > 60) {
-            grainEaten = (rand.nextInt(10, 30) * bushels)/ 100 ;
+            grainEaten = (rand.nextInt(10, 30) * bushels) / 100;
+
         }
         return grainEaten;
     }
 
     public int newCostOfLand() {
-        return rand.nextInt(17, 23) + 17;
+        return rand.nextInt(17, 24);
     }
 
 }
