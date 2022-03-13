@@ -30,6 +30,9 @@ public class Hammurabi {         // must save in a file named Hammurabi.java
         int immigrants = 0;
         int grainEaten = 0;
         int acresPlanted = 0;
+        int totalDeaths = 0;
+        int totalImmigration = 0;
+        int totalGrainEatingByRats = 0;
 
         while (years <= 10) {
             System.out.println("O great Hammurabi!");
@@ -66,12 +69,25 @@ public class Hammurabi {         // must save in a file named Hammurabi.java
             grainEaten = grainEatenByRats(bushels);
             bushels -= grainEaten;
             price = newCostOfLand();
+            totalDeaths = deaths + number_of_plague ;
+            totalImmigration += immigrants;
+            totalGrainEatingByRats += grainEaten;
+
             years++;
+
         }
-//            public final void finalSummary(){
-//
-//        }
+
+            System.out.println("All has come to an end! You have lasted " + years
+                    + "year(s)!\n A total of " + totalDeaths + " people died.\n " + totalImmigration +
+                    " people have chosen to come to your amazing kingdom and the final population was "
+                    + population + ".\n Somehow mutant rats ate a total of " + totalGrainEatingByRats +
+                    "... gross...\n Leaving " + bushels + " in storage.\n Finally you monopolized " + acres
+                    + " acres of land.");
+
+
     }
+
+
 
     public int getNumber(String message) {
         while (true) {
@@ -167,7 +183,7 @@ public class Hammurabi {         // must save in a file named Hammurabi.java
     public int grainEatenByRats(int bushels) {
         int grainEaten = 0;
         if (rand.nextInt(100) > 60) {
-            grainEaten = (rand.nextInt(10, 30) + 1) * bushels;
+            grainEaten = (rand.nextInt(10, 30) * bushels)/ 100 ;
         }
         return grainEaten;
     }
@@ -177,5 +193,6 @@ public class Hammurabi {         // must save in a file named Hammurabi.java
     }
 
 }
+
 
 
