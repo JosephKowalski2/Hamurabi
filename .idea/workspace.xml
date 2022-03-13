@@ -6,6 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="77e745fc-8517-46a1-9064-461c3756fba8" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/hammurabi/Hammurabi.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/hammurabi/Hammurabi.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -63,7 +64,7 @@
       <recent name="hammurabi" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.Hammurabi">
+  <component name="RunManager" selected="JUnit.HammurabiTest">
     <configuration name="Hammurabi" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="hammurabi.Hammurabi" />
       <module name="Hamurabi" />
@@ -118,9 +119,9 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.HammurabiTest" />
         <item itemvalue="Application.Hammurabi" />
         <item itemvalue="JUnit.HammurabiTest.testHarvest" />
-        <item itemvalue="JUnit.HammurabiTest" />
         <item itemvalue="JUnit.HammurabiTest.testGrainEatenByRats1" />
         <item itemvalue="JUnit.HammurabiTest.testNewCostOfLand" />
       </list>
