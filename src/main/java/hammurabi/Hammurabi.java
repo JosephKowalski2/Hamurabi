@@ -32,17 +32,17 @@ public class Hammurabi {         // must save in a file named Hammurabi.java
         int acresPlanted = 0;
 
         while (years <= 10) {
-        System.out.println("O great Hammurabi!");
-        System.out.println("You are in year" + " " + years + " " + "of your 10 year rule.");
-        System.out.println("In the previous year," + " " + deaths + " " + "people starved to death.");
-        System.out.println("In the previous year" + " " + immigrants + " " + "people entered the kingdom.");
-        System.out.println("The population is now" + " " + population + " " + ".");
-        System.out.println("We harvested" + " " + harvest + " " + "bushels at 3 bushels per acre.");
-        System.out.println("Rats destroyed" + " " + grainEaten + " " + "bushels, leaving" + " " + bushels + " " + "bushels in storage.");
-        System.out.println("The city owns" + " " + acres + " " + "acres of land.");
-        System.out.println("Land is currently worth" + " " + price + " " + "bushels per acre.");
-        // declare local variables here: grain, population, etc.
-        // statements go after the declations
+            System.out.println("O great Hammurabi!");
+            System.out.println("You are in year" + " " + years + " " + "of your 10 year rule.");
+            System.out.println("In the previous year," + " " + deaths + " " + "people starved to death.");
+            System.out.println("In the previous year" + " " + immigrants + " " + "people entered the kingdom.");
+            System.out.println("The population is now" + " " + population + " " + ".");
+            System.out.println("We harvested" + " " + harvest + " " + "bushels at 3 bushels per acre.");
+            System.out.println("Rats destroyed" + " " + grainEaten + " " + "bushels, leaving" + " " + bushels + " " + "bushels in storage.");
+            System.out.println("The city owns" + " " + acres + " " + "acres of land.");
+            System.out.println("Land is currently worth" + " " + price + " " + "bushels per acre.");
+            // declare local variables here: grain, population, etc.
+            // statements go after the declations
 
             acresBought = askHowManyAcresToBuy(price, bushels);
             acres -= acresBought;
@@ -68,6 +68,9 @@ public class Hammurabi {         // must save in a file named Hammurabi.java
             price = newCostOfLand();
             years++;
         }
+//            public final void finalSummary(){
+//
+//        }
     }
 
     public int getNumber(String message) {
@@ -140,14 +143,15 @@ public class Hammurabi {         // must save in a file named Hammurabi.java
     public boolean uprising(int population, int howManyPeopleStarved) {
         //Return true if more than 45% of the people starve. (This will cause you to be immediately
         // thrown out of office, ending the game.)
-        if(howManyPeopleStarved > (population * .45)){
+        if (howManyPeopleStarved > (population * .45)) {
             System.out.println("You failed, and were ousted from office...");
             return true;
-        }return false;
+        }
+        return false;
     }
 
     public Integer immigrants(int population, int acresOwned, int grainInStorage) {
-        int immigrants = (((20 * acresOwned) + (grainInStorage)) / ((100 * population) + 1));
+        int immigrants = (((20 * acresOwned) + (grainInStorage)) / ((100 * population)) + 1);
         //Nobody will come to the city if people are starving (so don't call this method). If everyone
         // is well-fed, compute how many people come to the city as:
         return immigrants;
@@ -173,4 +177,5 @@ public class Hammurabi {         // must save in a file named Hammurabi.java
     }
 
 }
+
 
