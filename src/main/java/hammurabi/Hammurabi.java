@@ -30,7 +30,7 @@ public class Hammurabi {         // must save in a file named Hammurabi.java
         int immigrants = 0;
         int grainEaten = 0;
         int acresPlanted;
-        int bushelsUsedAsSeed = 0;
+        int bushelsUsedAsSeed;
         int totalDeaths = 0;
         int totalImmigration = 0;
         int totalGrainEatingByRats = 0;
@@ -46,10 +46,10 @@ public class Hammurabi {         // must save in a file named Hammurabi.java
             System.out.println("The city owns" + " " + acres + " " + "acres of land.");
             System.out.println("Land is currently worth" + " " + price + " " + "bushels per acre.");
             // declare local variables here: grain, population, etc.
-            // statements go after the declations
+            // statements go after the declarations
 
             acresBought = askHowManyAcresToBuy(price, bushels);
-            acres -= acresBought;
+            acres += acresBought;
             if (acresBought == 0) {
                 acresSold = askHowManyAcresToSell(acres);
                 acres -= acresSold;
@@ -57,36 +57,56 @@ public class Hammurabi {         // must save in a file named Hammurabi.java
             bushelsFedToPeople = howMuchGrainToFeedPeople(bushels);
             bushels -= bushelsFedToPeople;
             acresPlanted = askHowManyAcresToPlant(acres, population, bushels);
-            acres -= acresPlanted;
+            bushels -= acresPlanted*2;
             number_of_plague = plagueDeaths(population);
             population -= number_of_plague;
+            if(number_of_plague>0) {
+                System.out.println("*********************************************************************************");
+                System.out.println("*********************************************************************************");
+                System.out.println("***********COVID HAS SWEPT THROUGH THE KINGDOM! " + number_of_plague + " people have died...***********");
+                System.out.println("*********************************************************************************");
+                System.out.println("*********************************************************************************");
+            }
             deaths = starvationDeaths(population, bushelsFedToPeople);
             population -= deaths;
+            totalDeaths = deaths + number_of_plague ;
             if (uprising(population, deaths)) break;
-            immigrants = immigrants(population, acres, bushels);
+            if (deaths==0) {
+
+                immigrants = immigrants(population, acres, bushels);
+
+            }
             population += immigrants;
-            harvest = harvest(acres, bushelsUsedAsSeed);
+            bushelsUsedAsSeed = acresPlanted*2;
+            harvest = harvest(acresPlanted, bushelsUsedAsSeed);
             bushels += harvest;
             grainEaten = grainEatenByRats(bushels);
             bushels -= grainEaten;
             price = newCostOfLand();
-            totalDeaths = deaths + number_of_plague ;
             totalImmigration += immigrants;
             totalGrainEatingByRats += grainEaten;
-            years++;;
+            years++;
             if(years==10) {
 
                 break;
             }
 
         }
-
-            System.out.println("All has come to an end! You have lasted " + years
-                    + "year(s)!\n A total of " + totalDeaths + " people died.\n " + totalImmigration +
-                    " people have chosen to come to your amazing kingdom and the final population was "
-                    + population + ".\n Somehow mutant rats ate a total of " + totalGrainEatingByRats +
-                    "bushels... gross...\n Leaving " + bushels + " in storage.\n Finally you monopolized "
-                    + acres + " acres of land.");
+            if (uprising(population,deaths)) {
+                System.out.println("The people threw you out because " + deaths +" people died from starvation... " +
+                        "Maybe being king doesn't suite you... try Zip Code instead..." + "\n You have lasted " + years + " year(s)! A total of " + totalDeaths + " people" +
+                        " died.\n " + totalImmigration + " people have chosen to come to your lousy kingdom and the " +
+                        "final population was " + population + ".\n Somehow mutant rats ate a total of " + totalGrainEatingByRats +
+                        " bushels... gross...\n Leaving " + bushels + " in storage.\n Finally you monopolized "
+                        + acres + " acres of land.");
+            } else {
+                System.out.println("All has come to an end! You have lasted " + years
+                        + " year(s)!\n A total of " + totalDeaths + " people died.\n " + totalImmigration +
+                        " people have chosen to come to your amazing kingdom and the final population was "
+                        + population + ".\n Somehow mutant rats ate a total of " + totalGrainEatingByRats +
+                        " bushels... gross...\n Leaving " + bushels + " in storage.\n Finally you monopolized "
+                        + acres + " acres of land.");
+            }
 
 
     }
@@ -132,7 +152,7 @@ public class Hammurabi {         // must save in a file named Hammurabi.java
 
     public int askHowManyAcresToPlant(int acresOwned, int population, int bushels) {
         int acresToPlant = getNumber("How many acres do you want to plant? \n");
-        while (acresToPlant > acresOwned || acresToPlant > (bushels / 2) || (population / 10) < acresToPlant) {
+        while (acresToPlant > acresOwned && acresToPlant > (bushels / 2) && (population / 10) < acresToPlant) {
             acresToPlant = getNumber("Nope, try again.... \n");
         }
         return acresToPlant;
@@ -144,11 +164,7 @@ public class Hammurabi {         // must save in a file named Hammurabi.java
         int number_of_plague = 0;
         if (rand.nextInt(100) > 85) {
             number_of_plague = Math.floorDiv(population, 2);
-            System.out.println("*********************************************************************************");
-            System.out.println("*********************************************************************************");
-            System.out.println("***********COVID HAS SWEPT THROUGH THE KINGDOM! " + number_of_plague + " people have died...***********");
-            System.out.println("*********************************************************************************");
-            System.out.println("*********************************************************************************");
+
         }
         return number_of_plague;
     }
@@ -169,7 +185,6 @@ public class Hammurabi {         // must save in a file named Hammurabi.java
         //Return true if more than 45% of the people starve. (This will cause you to be immediately
         // thrown out of office, ending the game.)
         if (howManyPeopleStarved > (population * .45)) {
-            System.out.println("You failed, and were ousted from office...");
             return true;
         }
         return false;
