@@ -9,8 +9,5 @@
         <module name="Hamurabi" />
       </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel>
-      <module name="Hamurabi" target="17" />
-    </bytecodeTargetLevel>
   </component>
 </project>
