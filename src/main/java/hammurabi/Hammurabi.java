@@ -53,7 +53,7 @@ public class Hammurabi {         // must save in a file named Hammurabi.java
             acresBought = askHowManyAcresToBuy(price, bushels);
             acres += acresBought;
             bushels -= acresBought * price;
-            System.out.println("You have " + (acres) + " acres now. And " + bushels + " bushels.");
+            System.out.println("You have " + (acres) + " acres now. And " + bushels + " bushels in the storage.");
             if (acresBought == 0) {
                 acresSold = askHowManyAcresToSell(acres);
                 acres -= acresSold;
@@ -63,9 +63,9 @@ public class Hammurabi {         // must save in a file named Hammurabi.java
             System.out.println("It takes " + population * 20 + " bushels to feed everyone.");
             bushelsFedToPeople = howMuchGrainToFeedPeople(bushels);
             bushels -= bushelsFedToPeople;
-            System.out.println("After you fed your people you have " + bushels + " remaining.");
+            System.out.println("After you fed your people you have " + bushels + " bushels remaining.");
             System.out.println("*** Remember, you need 2 bushels per acre, current is " + bushels + " " +
-                    "\n and you need 10 people per acre, current population is " + population);
+                    "\n and you need 1 peron per 10 acre, current population is " + population + ".");
             acresPlanted = askHowManyAcresToPlant(acres, population, bushels);
             bushels -= acresPlanted * 2;
             number_of_plague = plagueDeaths(population);
@@ -109,8 +109,33 @@ public class Hammurabi {         // must save in a file named Hammurabi.java
                     "final population was " + population + ".\n Somehow mutant rats ate a total of " + totalGrainEatingByRats +
                     " bushels... gross...\n Leaving " + bushels + " in storage.\n Finally you monopolized "
                     + acres + " acres of land.");
-        } else {
-            System.out.println("All has come to an end! You have lasted " + years
+
+        } else if (((bushels/population)*100)> 100&& years == 10){
+            System.out.println("All has come to an end! KING OF THE NORTH - YOU WILL GO DOWN IN THE BOOKS!!! You have lasted " + years
+                    + " year(s)!\n A total of " + totalDeaths + " people died.\n " + totalImmigration +
+                    " people have chosen to come to your amazing kingdom and the final population was "
+                    + population + ".\n Somehow mutant rats ate a total of " + totalGrainEatingByRats +
+                    " bushels... gross...\n Leaving " + bushels + " in storage.\n Finally you monopolized "
+                    + acres + " acres of land.");
+
+        }else if (((bushels/population)*100)> 100&& years == 10){
+            System.out.println("All has come to an end! You were an average king...You have lasted " + years
+                    + " year(s)!\n A total of " + totalDeaths + " people died.\n " + totalImmigration +
+                    " people have chosen to come to your amazing kingdom and the final population was "
+                    + population + ".\n Somehow mutant rats ate a total of " + totalGrainEatingByRats +
+                    " bushels... gross...\n Leaving " + bushels + " in storage.\n Finally you monopolized "
+                    + acres + " acres of land.");
+
+        }else if (((bushels/population)*100)> 100&& years == 10){
+            System.out.println("All has come to an end! Your people weren't happy but I guess you did it... king...You have lasted " + years
+                    + " year(s)!\n A total of " + totalDeaths + " people died.\n " + totalImmigration +
+                    " people have chosen to come to your amazing kingdom and the final population was "
+                    + population + ".\n Somehow mutant rats ate a total of " + totalGrainEatingByRats +
+                    " bushels... gross...\n Leaving " + bushels + " in storage.\n Finally you monopolized "
+                    + acres + " acres of land.");
+
+        }else if (((bushels/population)*100)> 100&& years == 10){
+            System.out.println("All has come to an end! You call yourself a king? You have lasted " + years
                     + " year(s)!\n A total of " + totalDeaths + " people died.\n " + totalImmigration +
                     " people have chosen to come to your amazing kingdom and the final population was "
                     + population + ".\n Somehow mutant rats ate a total of " + totalGrainEatingByRats +
@@ -161,7 +186,7 @@ public class Hammurabi {         // must save in a file named Hammurabi.java
 
     public int askHowManyAcresToPlant(int acresOwned, int population, int bushels) {
         int acresToPlant = getNumber("How many acres do you want to plant? \n");
-        while (acresToPlant > acresOwned || acresToPlant > (bushels / 2) || (population / 10) < acresToPlant) {
+        while (acresToPlant > acresOwned || acresToPlant > (bushels / 2) || (population * 10) < acresToPlant) {
             acresToPlant = getNumber("Nope, try again.... \n");
         }
         return acresToPlant;
