@@ -62,7 +62,7 @@ public class Hammurabi {         // must save in a file named Hammurabi.java
                 acresSold = askHowManyAcresToSell(acres);
                 acres -= acresSold;
                 bushels += acresSold * price;
-                System.out.println("You currently have " + (bushels) + " bushels after you sold land.");
+                System.out.println("You currently have " + (bushels) + " bushels and " + acres + " acres after you sold land.");
             }
 
 //ask how much grain to feed people
@@ -115,6 +115,13 @@ public class Hammurabi {         // must save in a file named Hammurabi.java
 
 //rats
             grainEaten = grainEatenByRats(bushels);
+            if (grainEaten > 0) {
+                System.out.println("*********************************************************************************");
+                System.out.println("*********************************************************************************");
+                System.out.println("*****A SWARM OF RELENTLESS RATS HAVE APPEARED! " + grainEaten + " bushels has been eaten...*****");
+                System.out.println("*********************************************************************************");
+                System.out.println("*********************************************************************************");
+            }
             bushels -= grainEaten;
 
 
@@ -152,7 +159,7 @@ public class Hammurabi {         // must save in a file named Hammurabi.java
                     " bushels... gross...\n Leaving " + bushels + " in storage.\n Finally you monopolized "
                     + acres + " acres of land.");
 
-        }else if (((bushels/population)*100)> 90&& years == 10){
+        }else if (deaths < 15 && ((acres/population)*100) > 5 && years == 10){
             System.out.println("All has come to an end! You were an average king...You have lasted " + years
                     + " year(s)!\n A total of " + totalDeaths + " people died.\n " + totalImmigration +
                     " people have chosen to come to your amazing kingdom and the final population was "
@@ -160,7 +167,7 @@ public class Hammurabi {         // must save in a file named Hammurabi.java
                     " bushels... gross...\n Leaving " + bushels + " in storage.\n Finally you monopolized "
                     + acres + " acres of land.");
 
-        }else if (((bushels/population)*100)> 80&& years == 10){
+        }else if (deaths < 20 && ((acres/population)*100) > 0 && years == 10){
             System.out.println("All has come to an end! Your people weren't happy but I guess you did it... king...You have lasted " + years
                     + " year(s)!\n A total of " + totalDeaths + " people died.\n " + totalImmigration +
                     " people have chosen to come to your amazing kingdom and the final population was "
