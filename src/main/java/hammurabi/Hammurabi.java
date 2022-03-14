@@ -16,7 +16,7 @@ public class Hammurabi {         // must save in a file named Hammurabi.java
 
 
     void playGame() {
-// intiial values @ start of game
+// initial values @ start of game
         int years = 1;
         int population = 100;
         int bushels = 2800;
@@ -135,7 +135,7 @@ public class Hammurabi {         // must save in a file named Hammurabi.java
         }
 
 
- //sytem out final summary
+ //system out final summary
         if (uprising(population, deaths)) {
             System.out.println("The people threw you out because " + deaths + " people died from starvation... " +
                     "Maybe being king doesn't suite you... try Zip Code instead..." + "\n You have lasted " + years + " year(s)! A total of " + totalDeaths + " people" +
@@ -194,17 +194,15 @@ public class Hammurabi {         // must save in a file named Hammurabi.java
 //acres to buy
     public int askHowManyAcresToBuy(int price, int bushels) {
         int acresBought = getNumber("How many acres do you want to buy? \n");
-        while ((price * acresBought) > bushels) {
-            acresBought = getNumber("You are broke, how many acres CAN you buy??? \n");
-        }
-
-        return acresBought;
+        while (((price * acresBought) > bushels) || (acresBought < 0)) {
+            acresBought = getNumber("You can't do that, how many acres CAN you buy??? \n");
+        }return acresBought;
     }
 //acres to sell
     public int askHowManyAcresToSell(int acresOwned) {
         int acresSold = getNumber("How many acres do you want to sell? \n");
-        while (acresSold > acresOwned) {
-            acresSold = getNumber("You don't have enough land to do that...try again...\n");
+        while ((acresSold > acresOwned) || (acresSold < 0))  {
+            acresSold = getNumber("That makes no sense...try again...\n");
         }
         return acresSold;
     }
@@ -212,15 +210,15 @@ public class Hammurabi {         // must save in a file named Hammurabi.java
 //grain to feed
     public int howMuchGrainToFeedPeople(int bushels) {
         int bushelsFedToPeople = getNumber("How much grain do you want to feed your people? \n");
-        while (bushelsFedToPeople > bushels) {
-            bushelsFedToPeople = getNumber("You don't have enough grain to feed the people, how much CAN you actually feed them? \n");
+        while ((bushelsFedToPeople > bushels) || bushelsFedToPeople < 0) {
+            bushelsFedToPeople = getNumber("Are you serious?, how much are you actually going to feed them? \n");
         }
         return bushelsFedToPeople;
     }
 //acres to plant
     public int askHowManyAcresToPlant(int acresOwned, int population, int bushels) {
         int acresToPlant = getNumber("How many acres do you want to plant? \n");
-        while (acresToPlant > acresOwned || acresToPlant > (bushels / 2) || (population * 10) < acresToPlant) {
+        while (acresToPlant > acresOwned || acresToPlant > (bushels / 2) || (population * 10) < acresToPlant || (acresToPlant < 0)) {
             acresToPlant = getNumber("Nope, try again.... \n");
         }
         return acresToPlant;
